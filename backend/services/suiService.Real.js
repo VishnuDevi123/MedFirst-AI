@@ -2,8 +2,7 @@
 // This will replace suiService.mock.js in the real demo path.
 // It talks directly to Sui fullnode RPC to read the on-chain DrugUnit object.
 
-import fetch from "node-fetch"; // if you're using Node 18+, you might not need this import
-// If you're using native fetch in Node, remove the import line.
+import fetch from "node-fetch"; 
 
 const SUI_RPC = "https://fullnode.testnet.sui.io:443";
 

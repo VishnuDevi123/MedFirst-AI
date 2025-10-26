@@ -36,9 +36,9 @@ export const drugSummaryAgent = new Agent({
   
     model: openai("gpt-4o-mini"),
   
-    // If you create domain tools (e.g., FDA query, blockchain fetcher), attach them here
+    
     tools: {
-      // fdaInfoTool
+     
     },
   
     memory: new Memory({
