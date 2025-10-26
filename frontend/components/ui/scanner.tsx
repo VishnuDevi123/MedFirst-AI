@@ -14,6 +14,7 @@ import {
   X,
   RefreshCw,
 } from 'lucide-react'
+import { extractObjectId } from '@/lib/object-id'
 
 interface ScannerProps {
   onScanResult: (result: string) => void
@@ -58,7 +59,8 @@ export default function Scanner({ onScanResult, onError }: ScannerProps) {
   }, [])
 
   const handleDecode = (decodedText: string, _decodedResult: Html5QrcodeResult) => {
-    const value = decodedText.trim()
+    const normalized = extractObjectId(decodedText)
+    const value = normalized?.trim() ?? decodedText.trim()
     if (!value) {
       return
     }

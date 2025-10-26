@@ -7,6 +7,7 @@ import Scanner from '@/components/ui/scanner'
 import ManualEntry from '@/components/ui/manual-entry'
 import VerificationResult from '@/components/ui/verification-result'
 import Footer from '@/components/ui/footer'
+import { extractObjectId } from '@/lib/object-id'
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:5050'
@@ -69,20 +70,6 @@ export default function Home() {
   const [verificationResult, setVerificationResult] = useState<UiVerificationResult | null>(null)
   const [isVerifying, setIsVerifying] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
-
-  const extractObjectId = (rawValue: string | null | undefined) => {
-    if (!rawValue) return null
-    const trimmed = rawValue.trim()
-    if (!trimmed) return null
-
-    try {
-      const url = new URL(trimmed)
-      const segments = url.pathname.split('/').filter(Boolean)
-      return segments.pop() ?? null
-    } catch {
-      return trimmed
-    }
-  }
 
   const mapResponseToUi = (data: ApiVerificationResponse): UiVerificationResult => {
     const nowIso = new Date().toISOString()
